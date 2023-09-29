@@ -16,16 +16,27 @@ class MovieListPage extends StatelessWidget {
             future: TmdbService().getPopularMovies(),
             builder: (context, snapshot) {
               if (snapshot.hasError) {
-                return Center(child: Text("Error"));
+                return const Center(child: Text("Error"));
               }
 
               if (!snapshot.hasData) {
-                return Center(child: Text("Loading..."));
+                return const Center(child: Text("Loading..."));
               }
 
               List<Movie> movies = snapshot.data as List<Movie>;
 
-              return Text(movies[0].title);
+              return ListView(
+                children: movies
+                    .map((e) => Column(
+                          children: [
+                            Text(e.title),
+                            Text(e.overview),
+                            Image.network(
+                                "https://image.tmdb.org/t/p/w500${e.posterPath}"),
+                          ],
+                        ))
+                    .toList(),
+              );
             }));
   }
 }
