@@ -9,9 +9,6 @@ class MovieListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text("IMDb Movies App"),
-        ),
         body: FutureBuilder(
             future: TmdbService().getPopularMovies(),
             builder: (context, snapshot) {

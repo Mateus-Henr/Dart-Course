@@ -11,12 +11,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
       ),
-      home: const MovieListPage(),
+      home: Scaffold(
+        appBar: AppBar(title: const Center(child: Text("IMDb Movies App"))),
+        body: const MovieListPage(),
+      ),
     );
   }
 }
